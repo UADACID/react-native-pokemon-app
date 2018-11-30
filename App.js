@@ -1,51 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react'
+import { View, Platform } from 'react-native'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+// import RootNavigation from './src/navigations'
+import getStore from './src/redux/store'
 
-import React, { Component } from 'react'
-import {
-  Platform, StyleSheet, Text, View,
-} from 'react-native'
+const { store, persistor, AppWithNavigationState } = getStore()
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
-})
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-})
-
-type Props = {}
-export default class App extends Component<Props> {
-  componentDidMount() {}
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    )
-  }
-}
+export default () => (
+  <View style={{ flex: 1, marginTop: Platform.OS === 'ios' ? 20 : 0 }}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppWithNavigationState />
+      </PersistGate>
+    </Provider>
+  </View>
+)
