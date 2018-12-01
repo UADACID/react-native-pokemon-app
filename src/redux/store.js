@@ -1,8 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import {
-  reduxifyNavigator,
-  createReactNavigationReduxMiddleware,
-} from 'react-navigation-redux-helpers'
+import { reduxifyNavigator, createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -17,7 +14,7 @@ import handleBackAndroid from '../utils/handleBackAndroid'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userReducer'],
+  whitelist: ['nav'],
 }
 
 const navMidleware = createReactNavigationReduxMiddleware('root', state => state.nav)
@@ -33,9 +30,7 @@ const AppWithNavigationState = connect(mapStateToProps)(handleBackAndroid(App))
 
 let createStoreWithMiddleware = null
 if (__DEV__) {
-  createStoreWithMiddleware = applyMiddleware(navMidleware, promiseMidleware, thunk, logger)(
-    createStore,
-  )
+  createStoreWithMiddleware = applyMiddleware(navMidleware, promiseMidleware, thunk, logger)(createStore)
 } else {
   createStoreWithMiddleware = applyMiddleware(navMidleware, promiseMidleware, thunk)(createStore)
 }

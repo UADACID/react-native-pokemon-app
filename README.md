@@ -2,6 +2,8 @@
 
 ## Installation
 
+[download here apk](https://drive.google.com/open?id=1ScvutiKnyfbYk0ZzEZnZrL8rIDPf_P4M)
+
 Poke App requires :
 
 - [React Native](https://facebook.github.io/react-native/docs/getting-started) - react native CLI installed
