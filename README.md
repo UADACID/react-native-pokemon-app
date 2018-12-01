@@ -1,5 +1,7 @@
 # Poke App
 
+![](https://giant.gfycat.com/DiscreteWideeyedBarasinga.webm)
+
 ## Installation
 
 [download here apk](https://drive.google.com/open?id=1ScvutiKnyfbYk0ZzEZnZrL8rIDPf_P4M)
